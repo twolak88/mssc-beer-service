@@ -23,9 +23,6 @@ import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(controllers = {BeerController.class})
 public class BeerControllerTest {
-    
-//    @MockBean
-//    private BeerService beerService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -47,25 +44,19 @@ public class BeerControllerTest {
 
     @Test
     public void testGetBeer() throws Exception {
-//        BDDMockito.given(this.beerService.getBeerById(ArgumentMatchers.any(UUID.class))).willReturn(validBeerDto);
 
         this.mockMvc.perform(MockMvcRequestBuilders.get(BeerController.BASE_URL + "/" + this.validBeerDto.getId().toString())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", CoreMatchers.is(this.validBeerDto.getId().toString())));
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.beerName", CoreMatchers.is(this.validBeerDto.getBeerName())));
     }
 
     @Test
     public void testSaveNewBeer() throws Exception {
         BeerDto beerDto = validBeerDto;
         beerDto.setId(null);
-//        BeerDto savedBeerDto = BeerDto.builder().id(UUID.randomUUID()).beerName("new beer").build();
-//
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
-//
-//        BDDMockito.given(this.beerService.saveNewBeer(ArgumentMatchers.any(BeerDto.class))).willReturn(savedBeerDto);
 
         this.mockMvc.perform(MockMvcRequestBuilders.post(BeerController.BASE_URL)
                 .accept(MediaType.APPLICATION_JSON)
@@ -83,14 +74,11 @@ public class BeerControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
-//        BDDMockito.then(this.beerService).should(Mockito.times(1)).updateBeer(ArgumentMatchers.any(UUID.class), ArgumentMatchers.any(BeerDto.class));
     }
 
     @Test
     public void testDeleteBeer() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders.delete(BeerController.BASE_URL + "/" + this.validBeerDto.getId().toString()))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
-//        BDDMockito.then(this.beerService).should(Mockito.times(1)).deleteBeerById(ArgumentMatchers.any(UUID.class));
     }
-    
 }
