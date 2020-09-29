@@ -1,6 +1,7 @@
 package twolak.springframework.msscbeerservice.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.math.BigDecimal;
 import java.util.UUID;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,7 @@ public class BeerControllerTest {
                 .beerName("Beer")
                 .beerStyle(BeerStyleEnum.PORTER)
                 .upc(1L)
+                .price(BigDecimal.valueOf(5.32))
                 .build();
     }
 
@@ -67,9 +69,11 @@ public class BeerControllerTest {
 
     @Test
     public void testUpdateBeer() throws Exception {
-        String beerDtoJson = this.objectMapper.writeValueAsString(this.validBeerDto);
+        BeerDto beerDto = validBeerDto;
+        beerDto.setId(null);
+        String beerDtoJson = this.objectMapper.writeValueAsString(beerDto);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.put(BeerController.BASE_URL + "/" + this.validBeerDto.getId().toString())
+        this.mockMvc.perform(MockMvcRequestBuilders.put(BeerController.BASE_URL + "/" + UUID.randomUUID())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
