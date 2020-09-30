@@ -8,6 +8,6 @@ import twolak.springframework.msscbeerservice.domain.Beer;
  *
  * @author twolak
  */
-public interface BeerReporsitory extends PagingAndSortingRepository<Beer, UUID> {
+public interface BeerRepository extends PagingAndSortingRepository<Beer, UUID> {
     
 }

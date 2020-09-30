@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import twolak.springframework.msscbeerservice.domain.Beer;
-import twolak.springframework.msscbeerservice.repositories.BeerReporsitory;
+import twolak.springframework.msscbeerservice.repositories.BeerRepository;
 
 /**
  *
@@ -13,10 +13,10 @@ import twolak.springframework.msscbeerservice.repositories.BeerReporsitory;
 @Component
 public class BeerLoader implements CommandLineRunner {
     
-    private final BeerReporsitory beerReporsitory;
+    private final BeerRepository beerRepository;
 
-    public BeerLoader(BeerReporsitory beerReporsitory) {
-        this.beerReporsitory = beerReporsitory;
+    public BeerLoader(BeerRepository beerRepository) {
+        this.beerRepository = beerRepository;
     }
     
     @Override
@@ -25,7 +25,7 @@ public class BeerLoader implements CommandLineRunner {
     }
 
     private void loadBeers() {
-        if (this.beerReporsitory.count() == 0) {
+        if (this.beerRepository.count() == 0) {
             CreateBeer("Warka", "STOUT", 123456781L, 3.32, 12, 200);
             CreateBeer("Debowe", "LAGER", 123456782L, 3.55, 12, 222);
             CreateBeer("Zywiec", "PORTER", 123456783L, 3.43, 11, 232);
@@ -35,7 +35,7 @@ public class BeerLoader implements CommandLineRunner {
     }
 
     private void CreateBeer(String beerName, String beerStyle, Long upc, double price, Integer minOnHand, Integer qualityToBrew) {
-        this.beerReporsitory.save(Beer.builder().beerName(beerName)
+        this.beerRepository.save(Beer.builder().beerName(beerName)
                 .beerStyle(beerStyle)
                 .upc(upc)
                 .price(BigDecimal.valueOf(price))
