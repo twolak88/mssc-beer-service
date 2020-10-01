@@ -46,7 +46,7 @@ public class BeerControllerTest {
                 .id(UUID.randomUUID())
                 .beerName("Beer")
                 .beerStyle(BeerStyleEnum.PORTER)
-                .upc(1L)
+                .upc("0631234200036")
                 .price(BigDecimal.valueOf(5.32))
                 .build();
     }

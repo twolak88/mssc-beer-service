@@ -13,6 +13,12 @@ import twolak.springframework.msscbeerservice.repositories.BeerRepository;
 @Component
 public class BeerLoader implements CommandLineRunner {
     
+    private static final String BEER_1_UPC = "0631234200036";
+    private static final String BEER_2_UPC = "0631234300019";
+    private static final String BEER_3_UPC = "0083783375213";
+    private static final String BEER_4_UPC = "0083783375214";
+    private static final String BEER_5_UPC = "0083783375215";
+    
     private final BeerRepository beerRepository;
 
     public BeerLoader(BeerRepository beerRepository) {
@@ -26,15 +32,15 @@ public class BeerLoader implements CommandLineRunner {
 
     private void loadBeers() {
         if (this.beerRepository.count() == 0) {
-            CreateBeer("Warka", "STOUT", 123456781L, 3.32, 12, 200);
-            CreateBeer("Debowe", "LAGER", 123456782L, 3.55, 12, 222);
-            CreateBeer("Zywiec", "PORTER", 123456783L, 3.43, 11, 232);
-            CreateBeer("Okocim", "WHEAT", 123456784L, 3.67, 10, 212);
-            CreateBeer("Kozel", "LAGER", 123456785L, 4.22, 11, 223);
+            CreateBeer("Warka", "STOUT", BEER_1_UPC, 3.32, 12, 200);
+            CreateBeer("Debowe", "LAGER", BEER_2_UPC, 3.55, 12, 222);
+            CreateBeer("Zywiec", "PORTER", BEER_3_UPC, 3.43, 11, 232);
+            CreateBeer("Okocim", "WHEAT", BEER_4_UPC, 3.67, 10, 212);
+            CreateBeer("Kozel", "LAGER", BEER_5_UPC, 4.22, 11, 223);
         }
     }
 
-    private void CreateBeer(String beerName, String beerStyle, Long upc, double price, Integer minOnHand, Integer qualityToBrew) {
+    private void CreateBeer(String beerName, String beerStyle, String upc, double price, Integer minOnHand, Integer qualityToBrew) {
         this.beerRepository.save(Beer.builder().beerName(beerName)
                 .beerStyle(beerStyle)
                 .upc(upc)

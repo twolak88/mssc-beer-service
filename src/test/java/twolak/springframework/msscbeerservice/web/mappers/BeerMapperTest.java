@@ -19,7 +19,7 @@ import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
 public class BeerMapperTest {
     
     private static final UUID BEER_ID = UUID.randomUUID();
-    private static final long BEER_UPC = 1L;
+    private static final String BEER_UPC = "0631234200036";
     private static final double BEER_PRICE = 5.32;
     private static final BeerStyleEnum BEER_STYLE = BeerStyleEnum.PORTER;
     private static final String BEER_NAME = "Beer";
