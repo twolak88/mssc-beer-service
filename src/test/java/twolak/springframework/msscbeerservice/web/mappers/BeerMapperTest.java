@@ -5,8 +5,10 @@ import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import twolak.springframework.msscbeerservice.domain.Beer;
 import twolak.springframework.msscbeerservice.web.model.BeerDto;
 import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
@@ -15,6 +17,7 @@ import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
  *
  * @author twolak
  */
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class BeerMapperTest {
     
