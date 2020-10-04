@@ -3,6 +3,8 @@ package twolak.springframework.msscbeerservice.services.impl;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
  *
  * @author twolak
  */
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class BeerServiceImpl implements BeerService{
@@ -27,8 +30,10 @@ public class BeerServiceImpl implements BeerService{
     private final BeerRepository beerRepository;
     private final BeerMapper beerMapper;
     
+    @Cacheable(cacheNames = "beerListCache", condition = "#showInventoryOnHand == false")
     @Override
     public BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest, Boolean showInventoryOnHand) {
+//        log.debug("BeerServiceImpl.listBeers: Cache test...");
         Page<Beer> beerPage;
         
         if (!StringUtils.isEmpty(beerName) && beerStyle != null) {
@@ -55,8 +60,10 @@ public class BeerServiceImpl implements BeerService{
                 beerPage.getTotalElements());
     }
     
+    @Cacheable(cacheNames = "beerCache", key = "#beerId", condition = "#showInventoryOnHand == false")
     @Override
     public BeerDto findById(UUID beerId, Boolean showInventoryOnHand) {
+//        log.debug("BeerServiceImpl.findById for id " + beerId + " cache test");
         Beer foundBeer = this.beerRepository.findById(beerId).orElseThrow(() -> new NotFoundException("Beer not found"));
         if (showInventoryOnHand.booleanValue()){
             return this.beerMapper.beerToBeerDtoWithInventoryOnHand(foundBeer);
