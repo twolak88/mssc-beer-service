@@ -64,7 +64,7 @@ public class BeerServiceImplIT {
         BDDMockito.given(this.beerRepository.findById(ArgumentMatchers.any(UUID.class)))
                 .willReturn(Optional.of(this.validBeer));
         
-        BeerDto foundBeerDto = this.beerService.findById(BEER_ID);
+        BeerDto foundBeerDto = this.beerService.findById(BEER_ID, false);
         
         assertNotNull(foundBeerDto);
         assertEquals(BEER_NAME, foundBeerDto.getBeerName());

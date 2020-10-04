@@ -14,6 +14,8 @@ import twolak.springframework.msscbeerservice.web.model.BeerDto;
 public interface BeerMapper {
     
     BeerDto beerToBeerDto(Beer beer);
+    
+    BeerDto beerToBeerDtoWithInventoryOnHand(Beer beer);
 
     Beer beerDtoToBeer(BeerDto beerDto);
 }

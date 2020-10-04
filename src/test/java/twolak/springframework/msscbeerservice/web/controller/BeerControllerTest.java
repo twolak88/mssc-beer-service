@@ -53,14 +53,14 @@ public class BeerControllerTest {
 
     @Test
     public void testGetBeer() throws Exception {
-        BDDMockito.given(this.beerService.findById(ArgumentMatchers.any(UUID.class))).willReturn(this.validBeerDto);
+        BDDMockito.given(this.beerService.findById(ArgumentMatchers.any(UUID.class), ArgumentMatchers.any(Boolean.class))).willReturn(this.validBeerDto);
 
         this.mockMvc.perform(MockMvcRequestBuilders.get(BeerController.BASE_URL + "/" + this.validBeerDto.getId().toString())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", CoreMatchers.is(this.validBeerDto.getId().toString())));
-        BDDMockito.then(this.beerService).should(Mockito.times(1)).findById(ArgumentMatchers.any(UUID.class));
+        BDDMockito.then(this.beerService).should(Mockito.times(1)).findById(ArgumentMatchers.any(UUID.class), ArgumentMatchers.any(Boolean.class));
     }
 
     @Test

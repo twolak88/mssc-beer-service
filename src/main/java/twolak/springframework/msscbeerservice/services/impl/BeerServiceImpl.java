@@ -28,7 +28,7 @@ public class BeerServiceImpl implements BeerService{
     private final BeerMapper beerMapper;
     
     @Override
-    public BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest) {
+    public BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest, Boolean showInventoryOnHand) {
         Page<Beer> beerPage;
         
         if (!StringUtils.isEmpty(beerName) && beerStyle != null) {
@@ -40,21 +40,28 @@ public class BeerServiceImpl implements BeerService{
         } else {
             beerPage = this.beerRepository.findAll(pageRequest);
         }
+        
         return new BeerPagedList(beerPage
                 .getContent()
                 .stream()
-                .map(this.beerMapper::beerToBeerDto)
+                .map(beer -> {
+                    if (showInventoryOnHand.booleanValue()) {
+                        return this.beerMapper.beerToBeerDtoWithInventoryOnHand(beer);
+                    }
+                    return this.beerMapper.beerToBeerDto(beer);
+                })
                 .collect(Collectors.toList()),
                 PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
                 beerPage.getTotalElements());
     }
     
     @Override
-    public BeerDto findById(UUID beerId) {
-        return this.beerMapper.beerToBeerDto(
-                this.beerRepository.findById(beerId)
-                    .orElseThrow(() -> new NotFoundException("Beer not found"))
-        );
+    public BeerDto findById(UUID beerId, Boolean showInventoryOnHand) {
+        Beer foundBeer = this.beerRepository.findById(beerId).orElseThrow(() -> new NotFoundException("Beer not found"));
+        if (showInventoryOnHand.booleanValue()){
+            return this.beerMapper.beerToBeerDtoWithInventoryOnHand(foundBeer);
+        }
+        return this.beerMapper.beerToBeerDto(foundBeer);
     }
 
     @Override

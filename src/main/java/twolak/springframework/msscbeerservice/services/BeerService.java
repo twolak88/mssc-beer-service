@@ -11,8 +11,8 @@ import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
  * @author twolak
  */
 public interface BeerService {
-    BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest);
-    BeerDto findById(UUID beerId);
+    BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest, Boolean showInventoryOnHand);
+    BeerDto findById(UUID beerId, Boolean showInventoryOnHand);
     BeerDto saveNewBeer(BeerDto beerDto);
     BeerDto updateBeer(UUID beerId, BeerDto beerDto);
     void deleteBeer(UUID beerId);
