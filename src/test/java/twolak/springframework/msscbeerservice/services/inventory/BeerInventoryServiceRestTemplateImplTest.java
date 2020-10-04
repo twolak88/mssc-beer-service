@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import twolak.springframework.msscbeerservice.bootstrap.BeerLoader;
@@ -13,6 +14,7 @@ import twolak.springframework.msscbeerservice.bootstrap.BeerLoader;
  * @author twolak
  */
 @Slf4j
+@Disabled
 @SpringBootTest
 public class BeerInventoryServiceRestTemplateImplTest {
     
