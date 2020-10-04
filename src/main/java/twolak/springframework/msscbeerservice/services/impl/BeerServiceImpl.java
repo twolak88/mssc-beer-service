@@ -70,6 +70,14 @@ public class BeerServiceImpl implements BeerService{
         }
         return this.beerMapper.beerToBeerDto(foundBeer);
     }
+    
+    @Cacheable(cacheNames = "beerUpcCache", key = "#upc")
+    @Override
+    public BeerDto findByUpc(String upc) {
+//        log.debug("BeerServiceImpl.findById for upc " + upc + " cache test");
+        Beer foundBeer = this.beerRepository.findByUpc(upc).orElseThrow(() -> new NotFoundException("Beer not found"));
+        return this.beerMapper.beerToBeerDto(foundBeer);
+    }
 
     @Override
     public BeerDto saveNewBeer(BeerDto beerDto) {

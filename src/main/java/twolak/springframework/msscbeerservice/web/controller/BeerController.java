@@ -28,14 +28,15 @@ import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
 @RestController
 @RequestMapping(BeerController.BASE_URL)
 public class BeerController {
-    public static final String BASE_URL = "/api/v1/beer";
+    public static final String BASE_URL = "/api/v1";
     private static final String BEER_ID = "beerId";
+    private static final String UPC = "upc";
     private static final Integer DEFAULT_PAGE_NUMBER = 0;
     private static final Integer DEFAULT_PAGE_SIZE = 20;
     
     private final BeerService beerService;
     
-    @GetMapping(produces = {"application/json"})
+    @GetMapping(produces = {"application/json"}, path = "beer")
     public ResponseEntity<BeerPagedList> listBeers(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
                                                    @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                                    @RequestParam(value = "beerName", required = false) String beerName,
@@ -53,7 +54,7 @@ public class BeerController {
         return new ResponseEntity<>(this.beerService.listBeers(beerName, beerStyle, PageRequest.of(pageNumber, pageSize), showInventoryOnHand), HttpStatus.OK);
     }
     
-    @GetMapping("{" + BEER_ID + "}")
+    @GetMapping("beer/{" + BEER_ID + "}")
     public ResponseEntity<BeerDto> getBeer(@PathVariable(BEER_ID) UUID beerId,
                                            @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand) {
         if (showInventoryOnHand == null) {
@@ -62,17 +63,22 @@ public class BeerController {
         return new ResponseEntity<>(this.beerService.findById(beerId, showInventoryOnHand), HttpStatus.OK);
     }
     
-    @PostMapping
+    @GetMapping("beerUpc/{" + UPC + "}")
+    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable(UPC) String upc) {
+        return new ResponseEntity<>(this.beerService.findByUpc(upc), HttpStatus.OK);
+    }
+    
+    @PostMapping("beer")
     public ResponseEntity<BeerDto> saveNewBeer(@Valid @RequestBody BeerDto beerDto) {
         return new ResponseEntity<>(this.beerService.saveNewBeer(beerDto), HttpStatus.CREATED);
     }
     
-    @PutMapping("{" + BEER_ID + "}")
+    @PutMapping("beer/{" + BEER_ID + "}")
     public ResponseEntity<BeerDto> updateBeer(@PathVariable(BEER_ID) UUID beerId, @Valid @RequestBody BeerDto beerDto) {
         return new ResponseEntity<>(this.beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
     }
     
-    @DeleteMapping("{" + BEER_ID + "}")
+    @DeleteMapping("beer/{" + BEER_ID + "}")
     public ResponseEntity deleteBeer(@PathVariable(BEER_ID) UUID beerId) {
         this.beerService.deleteBeer(beerId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);

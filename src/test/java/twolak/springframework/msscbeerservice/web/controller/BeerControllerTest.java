@@ -53,7 +53,7 @@ public class BeerControllerTest {
     public void testGetBeer() throws Exception {
         BDDMockito.given(this.beerService.findById(ArgumentMatchers.any(UUID.class), ArgumentMatchers.any(Boolean.class))).willReturn(this.validBeerDto);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get(BeerController.BASE_URL + "/" + this.validBeerDto.getId().toString())
+        this.mockMvc.perform(MockMvcRequestBuilders.get(BeerController.BASE_URL + "/beer/" + this.validBeerDto.getId().toString())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
@@ -69,7 +69,7 @@ public class BeerControllerTest {
         
         BDDMockito.given(this.beerService.saveNewBeer(ArgumentMatchers.any(BeerDto.class))).willReturn(beerDto);
         
-        this.mockMvc.perform(MockMvcRequestBuilders.post(BeerController.BASE_URL)
+        this.mockMvc.perform(MockMvcRequestBuilders.post(BeerController.BASE_URL + "/beer")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
@@ -85,7 +85,7 @@ public class BeerControllerTest {
         
         BDDMockito.given(this.beerService.updateBeer(ArgumentMatchers.any(UUID.class), ArgumentMatchers.any(BeerDto.class))).willReturn(beerDto);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.put(BeerController.BASE_URL + "/" + UUID.randomUUID())
+        this.mockMvc.perform(MockMvcRequestBuilders.put(BeerController.BASE_URL + "/beer/" + UUID.randomUUID())
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
@@ -95,7 +95,7 @@ public class BeerControllerTest {
 
     @Test
     public void testDeleteBeer() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.delete(BeerController.BASE_URL + "/" + this.validBeerDto.getId().toString()))
+        this.mockMvc.perform(MockMvcRequestBuilders.delete(BeerController.BASE_URL + "/beer/" + this.validBeerDto.getId().toString()))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
         BDDMockito.then(this.beerService).should(Mockito.times(1)).deleteBeer(ArgumentMatchers.any(UUID.class));
     }
