@@ -1,4 +1,4 @@
-package twolak.springframework.msscbeerservice.services;
+package twolak.springframework.msscbeerservice.services.brewing;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
