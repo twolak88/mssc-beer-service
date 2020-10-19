@@ -1,4 +1,4 @@
-package twolak.springframework.msscbeerservice.events;
+package twolak.springframework.common.events;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;

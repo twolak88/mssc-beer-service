@@ -1,4 +1,4 @@
-package twolak.springframework.msscbeerservice.events;
+package twolak.springframework.common.events;
 
 import lombok.NoArgsConstructor;
 import twolak.springframework.msscbeerservice.web.model.BeerDto;

@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import twolak.springframework.msscbeerservice.config.JmsConfig;
 import twolak.springframework.msscbeerservice.domain.Beer;
-import twolak.springframework.msscbeerservice.events.BrewBeerEvent;
+import twolak.springframework.common.events.BrewBeerEvent;
 import twolak.springframework.msscbeerservice.repositories.BeerRepository;
 import twolak.springframework.msscbeerservice.services.inventory.BeerInventoryService;
 import twolak.springframework.msscbeerservice.web.mappers.BeerMapper;

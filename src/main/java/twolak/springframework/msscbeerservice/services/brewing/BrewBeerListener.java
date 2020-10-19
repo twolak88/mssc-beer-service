@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import twolak.springframework.msscbeerservice.config.JmsConfig;
 import twolak.springframework.msscbeerservice.domain.Beer;
-import twolak.springframework.msscbeerservice.events.BrewBeerEvent;
-import twolak.springframework.msscbeerservice.events.NewInventoryEvent;
+import twolak.springframework.common.events.BrewBeerEvent;
+import twolak.springframework.common.events.NewInventoryEvent;
 import twolak.springframework.msscbeerservice.repositories.BeerRepository;
 import twolak.springframework.msscbeerservice.web.model.BeerDto;
 
