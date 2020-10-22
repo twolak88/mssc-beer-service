@@ -16,8 +16,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import twolak.springframework.msscbeerservice.web.model.BeerDto;
-import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
+import twolak.springframework.brewery.model.BeerDto;
+import twolak.springframework.brewery.model.BeerStyleEnum;
 import twolak.springframework.msscbeerservice.services.BeerService;
 
 /**

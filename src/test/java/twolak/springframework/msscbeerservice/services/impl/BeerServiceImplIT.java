@@ -20,8 +20,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import twolak.springframework.msscbeerservice.domain.Beer;
 import twolak.springframework.msscbeerservice.repositories.BeerRepository;
 import twolak.springframework.msscbeerservice.services.BeerService;
-import twolak.springframework.msscbeerservice.web.model.BeerDto;
-import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
+import twolak.springframework.brewery.model.BeerDto;
+import twolak.springframework.brewery.model.BeerStyleEnum;
 
 /**
  *

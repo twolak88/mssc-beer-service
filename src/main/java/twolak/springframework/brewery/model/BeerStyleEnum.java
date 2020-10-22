@@ -1,4 +1,4 @@
-package twolak.springframework.msscbeerservice.web.model;
+package twolak.springframework.brewery.model;
 
 /**
  *

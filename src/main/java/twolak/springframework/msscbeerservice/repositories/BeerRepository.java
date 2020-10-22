@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import twolak.springframework.msscbeerservice.domain.Beer;
-import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
+import twolak.springframework.brewery.model.BeerStyleEnum;
 
 /**
  *

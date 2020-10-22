@@ -3,7 +3,7 @@ package twolak.springframework.msscbeerservice.web.mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import twolak.springframework.msscbeerservice.domain.Beer;
 import twolak.springframework.msscbeerservice.services.inventory.BeerInventoryService;
-import twolak.springframework.msscbeerservice.web.model.BeerDto;
+import twolak.springframework.brewery.model.BeerDto;
 
 /**
  *

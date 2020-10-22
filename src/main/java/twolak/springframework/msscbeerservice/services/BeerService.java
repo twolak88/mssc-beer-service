@@ -2,9 +2,9 @@ package twolak.springframework.msscbeerservice.services;
 
 import java.util.UUID;
 import org.springframework.data.domain.PageRequest;
-import twolak.springframework.msscbeerservice.web.model.BeerDto;
-import twolak.springframework.msscbeerservice.web.model.BeerPagedList;
-import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
+import twolak.springframework.brewery.model.BeerDto;
+import twolak.springframework.brewery.model.BeerPagedList;
+import twolak.springframework.brewery.model.BeerStyleEnum;
 
 /**
  *

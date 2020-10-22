@@ -3,7 +3,7 @@ package twolak.springframework.msscbeerservice.web.mappers;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import twolak.springframework.msscbeerservice.domain.Beer;
-import twolak.springframework.msscbeerservice.web.model.BeerDto;
+import twolak.springframework.brewery.model.BeerDto;
 
 /**
  *

@@ -1,4 +1,4 @@
-package twolak.springframework.msscbeerservice.web.model;
+package twolak.springframework.brewery.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import twolak.springframework.msscbeerservice.domain.Beer;
-import twolak.springframework.msscbeerservice.web.model.BeerDto;
-import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
+import twolak.springframework.brewery.model.BeerDto;
+import twolak.springframework.brewery.model.BeerStyleEnum;
 
 /**
  *

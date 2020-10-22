@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import twolak.springframework.msscbeerservice.web.model.BeerDto;
+import twolak.springframework.brewery.model.BeerDto;
 import twolak.springframework.msscbeerservice.services.BeerService;
-import twolak.springframework.msscbeerservice.web.model.BeerPagedList;
-import twolak.springframework.msscbeerservice.web.model.BeerStyleEnum;
+import twolak.springframework.brewery.model.BeerPagedList;
+import twolak.springframework.brewery.model.BeerStyleEnum;
 
 /**
  *
